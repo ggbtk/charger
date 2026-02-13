@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>충전티켓 | 실시간 상품권 매입 플랫폼</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+ 
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1D4ED8',
+            accent: '#FBBF24'
+          },
+          fontFamily: {
+            sans: ['Noto Sans KR', 'sans-serif']
+          },
+          backgroundImage: {
+            hero: "url('https://images.unsplash.com/photo-1588776814546-ec7e1737dd14?auto=format&fit=crop&w=1470&q=80')"
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+  </style>
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+    .hero-bg {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1588776814546-ec7e1737dd14?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+    }
+    .fade-in {
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+	        <!-- Channel.io SDK -->
+    <script>
+      (function() {
+        var w = window;
+        if (w.ChannelIO) {
+            return (window.console.error || window.console.log || function(){})('ChannelIO script included twice.');
+        }
+        var ch = function() {
+            ch.c(arguments);
+        };
+        ch.q = [];
+        ch.c = function(args) {
+            ch.q.push(args);
+        };
+        w.ChannelIO = ch;
+        function l() {
+            if (w.ChannelIOInitialized) {
+                return;
+            }
+            w.ChannelIOInitialized = true;
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
+            var x = document.getElementsByTagName('script')[0];
+            x.parentNode.insertBefore(s, x);
+        }
+        if (document.readyState === 'complete') {
+            l();
+        } else {
+            w.addEventListener('load', l, false);
+        }
+      })();
+    </script>
+
+<script>
+  (function(){var w=window;if(w.ChannelIO){return w.console.error("ChannelIO script included twice.");}var ch=function(){ch.c(arguments);};ch.q=[];ch.c=function(args){ch.q.push(args);};w.ChannelIO=ch;function l(){if(w.ChannelIOInitialized){return;}w.ChannelIOInitialized=true;var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src="https://cdn.channel.io/plugin/ch-plugin-web.js";var x=document.getElementsByTagName("script")[0];if(x.parentNode){x.parentNode.insertBefore(s,x);}}if(document.readyState==="complete"){l();}else{w.addEventListener("DOMContentLoaded",l);w.addEventListener("load",l);}})();
+
+  ChannelIO('boot', {
+    "pluginKey": "b628b5e5-916d-464c-8c26-5ff46200b4c5"
+  });
+</script>
+	
+  <header class="bg-white shadow fixed w-full z-50">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-primary">충전티켓</h1>
+      <nav class="space-x-6 text-sm hidden md:block">
+        <a href="#how" class="text-gray-700 hover:text-primary">이용안내</a>
+        <a href="#service" class="text-gray-700 hover:text-primary">서비스</a>
+        <a href="#contact" class="text-gray-700 hover:text-primary">문의</a>
+      </nav>
+		<a id="header-tel-link" class="md:hidden text-primary">
+		  <i class="ri-phone-line ri-xl"></i>
+		</a>
+    </div>
+  </header>
+
+<section class="relative bg-gradient-to-br from-indigo-800 via-slate-900 to-black text-white py-28 md:py-36 overflow-hidden">
+  <div class="absolute inset-0 bg-black/60 backdrop-blur-md"></div>
+
+  <div class="relative z-10 container mx-auto px-4 text-center">
+    <h2 class="text-5xl md:text-6xl font-extrabold mb-5 leading-tight drop-shadow-[0_4px_6px_rgba(0,0,0,0.7)]">
+      상품권 매입, 지금 바로 시작하세요
+    </h2>
+    <p class="text-lg md:text-2xl text-gray-100 font-medium drop-shadow-sm mb-10">
+      빠르고 안전한 충전티켓의 실시간 거래를 지금 경험해보세요
+    </p>
+
+    <div class="flex justify-center gap-6 flex-wrap">
+      <!-- 전화상담 버튼 -->
+      <div class="flex flex-col items-center">
+        <a onclick="location.href='tel:' + TEL_NUMBER" class="flex items-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-black px-6 py-3 rounded-full text-lg font-bold shadow-lg transition-transform transform hover:scale-105">
+          <i class="ri-phone-fill text-xl"></i> 전화상담
+		  <span class="footer-phone" class="block text-sm"></span>
+        </a>
+        <span class="mt-2 text-sm text-gray-200">365일 24시간 운영</span>
+      </div>
+
+      <!-- 카카오톡 상담 버튼 -->
+      <div class="flex flex-col items-center">
+        <a onclick="location.href='sms:' + TEL_NUMBER" class="flex items-center gap-2 bg-white hover:bg-gray-100 text-indigo-900 px-6 py-3 rounded-full text-lg font-bold shadow-lg transition-transform transform hover:scale-105">
+          <i class="ri-kakao-talk-fill text-yellow-400 text-xl"></i> 문자 상담
+		  <span class="footer-phone-sms" class="block text-sm"></span>
+        </a>
+        <span class="mt-2 text-sm text-gray-200">24시간 자동 연결</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-gradient-to-br from-yellow-100 to-white py-20 text-center relative overflow-hidden">
+  <div class="absolute inset-0 bg-white/40 backdrop-blur-sm"></div>
+  <div class="relative z-10 container mx-auto px-4">
+    <div class="inline-block bg-yellow-400 text-black text-sm px-4 py-1 rounded-full font-semibold mb-4 shadow">공지사항</div>
+    <h3 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 drop-shadow-md">첫 거래 수수료 할인 이벤트</h3>
+    <p class="text-lg md:text-xl text-gray-700 mb-8">지금 충전티켓에서 첫 결제 시 거래 수수료를 <span class="font-bold text-primary">할인</span>해드립니다!</p>
+    <a href="#contact" class="inline-block bg-primary text-white px-8 py-3 rounded-full font-bold hover:bg-blue-700 transition-transform transform hover:scale-105 shadow-lg">
+      지금 확인하러 가기 →
+    </a>
+  </div>
+</section>
+
+
+<section id="how" class="py-20 bg-gradient-to-br from-gray-50 to-white">
+  <div class="container mx-auto px-4">
+    <h3 class="text-4xl md:text-5xl font-extrabold text-center text-gray-800 mb-16 drop-shadow">이용 절차</h3>
+    <div class="grid md:grid-cols-3 gap-10">
+      <div class="bg-white rounded-2xl p-8 shadow-md text-center hover:shadow-xl transition duration-300">
+        <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-primary/10 text-primary text-4xl rounded-full shadow-sm">
+          <i class="ri-chat-3-fill"></i>
+        </div>
+        <h4 class="font-bold text-xl mb-2 text-gray-900">1. 문의 접수</h4>
+        <p class="text-gray-600">전화 또는 문자로 간편하게 문의하세요.</p>
+      </div>
+
+      <div class="bg-white rounded-2xl p-8 shadow-md text-center hover:shadow-xl transition duration-300">
+        <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-primary/10 text-primary text-4xl rounded-full shadow-sm">
+          <i class="ri-gift-fill"></i>
+        </div>
+        <h4 class="font-bold text-xl mb-2 text-gray-900">2. 상품권 전달</h4>
+        <p class="text-gray-600">상품권 종류와 금액을 알려주시면 시세 안내드립니다.</p>
+      </div>
+
+      <div class="bg-white rounded-2xl p-8 shadow-md text-center hover:shadow-xl transition duration-300">
+        <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-primary/10 text-primary text-4xl rounded-full shadow-sm">
+          <i class="ri-bank-card-fill"></i>
+        </div>
+        <h4 class="font-bold text-xl mb-2 text-gray-900">3. 실시간 입금</h4>
+        <p class="text-gray-600">매입 확정 후 빠르게 계좌로 입금됩니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+  
+
+
+<section id="service" class="py-20 bg-white">
+  <div class="container mx-auto px-4 text-center">
+    <h3 class="text-4xl font-extrabold mb-14 text-gray-800 drop-shadow">취급 상품권 종류</h3>
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-8">
+      <div class="bg-gradient-to-br from-yellow-50 to-white p-6 rounded-xl shadow hover:shadow-lg transition">
+        <div class="text-primary text-4xl mb-3">
+          <i class="ri-smartphone-fill"></i>
+        </div>
+        <p class="font-bold text-lg text-gray-800">모바일 상품권</p>
+      </div>
+      <div class="bg-gradient-to-br from-yellow-50 to-white p-6 rounded-xl shadow hover:shadow-lg transition">
+        <div class="text-primary text-4xl mb-3">
+          <i class="ri-ticket-2-fill"></i>
+        </div>
+        <p class="font-bold text-lg text-gray-800">문화 상품권</p>
+      </div>
+      <div class="bg-gradient-to-br from-yellow-50 to-white p-6 rounded-xl shadow hover:shadow-lg transition">
+        <div class="text-primary text-4xl mb-3">
+          <i class="ri-shopping-bag-fill"></i>
+        </div>
+        <p class="font-bold text-lg text-gray-800">기프티콘</p>
+      </div>
+      <div class="bg-gradient-to-br from-yellow-50 to-white p-6 rounded-xl shadow hover:shadow-lg transition">
+        <div class="text-primary text-4xl mb-3">
+          <i class="ri-coupon-fill"></i>
+        </div>
+        <p class="font-bold text-lg text-gray-800">기타 상품권</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- 이미지 슬라이드 -->
+  <section class="bg-light py-5">
+    <div class="container">
+      <h3 class="text-center h2 fw-bold mb-5">충전티켓 거래 사례</h3>
+      <div class="overflow-hidden">
+        <div class="d-flex slide-track" style="animation: scroll 20s linear infinite; gap: 1rem;">
+          <img src="assets/images/신세계.png" style="width: 30%; min-width: 250px; object-fit: contain;" alt="신세계" class="rounded shadow">
+          <img src="assets/images/롯데.png" style="width: 30%; min-width: 250px; object-fit: contain;" alt="롯데" class="rounded shadow">
+          <img src="assets/images/현대.png" style="width: 30%; min-width: 250px; object-fit: contain;" alt="현대" class="rounded shadow">
+          <img src="assets/images/갤러리아.png" style="width: 30%; min-width: 250px; object-fit: contain;" alt="갤러리아" class="rounded shadow">
+          <img src="assets/images/스벅.png" style="width: 30%; min-width: 250px; object-fit: contain;" alt="스벅" class="rounded shadow">
+          <img src="assets/images/올리브영.png" style="width: 30%; min-width: 250px; object-fit: contain;" alt="올리브영" class="rounded shadow">
+          <img src="assets/images/컬쳐.png" style="width: 30%; min-width: 250px; object-fit: contain;" alt="컬쳐" class="rounded shadow">
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <style>
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .slide-track {
+      width: 200%;
+    }
+    @media (max-width: 767px) {
+    .slide-track img {
+      width: 80% !important;
+      min-width: unset !important;
+    }
+  }
+</style>
+
+<section class="py-20 bg-gray-50 text-center">
+  <div class="container mx-auto px-4">
+    <h3 class="text-3xl font-bold mb-6">왜 충전티켓일까요?</h3>
+    <p class="mb-10 text-gray-600 text-lg">수많은 고객이 선택한 이유가 있습니다.</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-white p-6 rounded-lg shadow">
+        <i class="ri-shield-check-line text-4xl text-primary mb-4"></i>
+        <h4 class="text-xl font-semibold mb-2">정식등록업체</h4>
+        <p class="text-gray-600 text-sm">신뢰할 수 있는 공식 등록된 업체로 안전한 거래를 보장합니다.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow">
+        <i class="ri-time-line text-4xl text-primary mb-4"></i>
+        <h4 class="text-xl font-semibold mb-2">빠른 입금</h4>
+        <p class="text-gray-600 text-sm">상담 후 평균 5분 이내로 즉시 입금이 완료됩니다.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow">
+        <i class="ri-user-heart-line text-4xl text-primary mb-4"></i>
+        <h4 class="text-xl font-semibold mb-2">친절한 상담</h4>
+        <p class="text-gray-600 text-sm">24시간 언제든 친절하게 상담드리며 부담 없이 문의하실 수 있어요.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="bg-gradient-to-b from-primary to-indigo-800 text-white py-24 text-center relative overflow-hidden">
+  <div class="absolute inset-0 bg-black/30 backdrop-blur-sm"></div>
+  <div class="relative z-10 container mx-auto px-4">
+    <h3 class="text-4xl md:text-5xl font-extrabold mb-6 drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">24시간 언제든지 문의 가능</h3>
+    <p class="text-lg md:text-xl mb-10 text-gray-200 font-medium drop-shadow-sm">충전티켓은 신뢰를 바탕으로 <span class="text-yellow-400 font-semibold">신속 정확한 입금</span>을 약속드립니다.</p>
+    <div class="flex justify-center gap-6 flex-wrap">
+      <!-- 전화 상담 -->
+<div class="flex flex-col items-center">
+  <a onclick="location.href='tel:' + TEL_NUMBER"
+     class="flex flex-col items-center gap-1 bg-white text-primary hover:bg-gray-200 px-6 py-3 rounded-full text-lg font-bold shadow-md transition-transform transform hover:scale-105 text-center">
+    <div class="flex items-center gap-2">
+      <i class="ri-phone-fill text-xl"></i> 전화 상담
+    </div>
+    <span class="footer-phone" class="text-sm font-normal"></span>
+  </a>
+  <span class="mt-2 text-sm text-gray-100">365일 24시간 운영</span>
+</div>
+      <!-- 카카오톡 상담 -->
+		<div class="flex flex-col items-center">
+		  <a onclick="location.href='sms:' + TEL_NUMBER"
+			 class="flex flex-col items-center gap-1 bg-yellow-400 text-black hover:bg-yellow-300 px-6 py-3 rounded-full text-lg font-bold shadow-md transition-transform transform hover:scale-105 text-center">
+			<div class="flex items-center gap-2">
+			  <i class="ri-kakao-talk-fill text-xl"></i> 문자 상담
+			</div>
+			<span class="footer-phone-sms" class="text-sm font-normal"></span>
+		  </a>
+		  <span class="mt-2 text-sm text-gray-100">365일 24시간 자동 연결</span>
+		</div>
+    </div>
+  </div>
+</section>
+
+  <!-- 후기 카드 섹션 -->
+  <!-- 후기 카드 섹션 -->
+<section class="bg-white py-5">
+  <div class="container">
+    <h3 class="text-center h2 fw-bold mb-5">고객 후기</h3>
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="card h-100 shadow-sm">
+            <div class="text-center pt-4">
+              <i class="ri-user-3-line display-4 text-primary"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">최유리 님</h5>
+              <div class="text-warning mb-2">
+                ★★★★★
+              </div>
+              <p class="card-text text-muted">밤늦게 문의드렸는데도 빠르게 대응해주셔서 감사했어요. 다음에도 또 이용할게요.</p>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="card h-100 shadow-sm">
+            <div class="text-center pt-4">
+              <i class="ri-user-3-line display-4 text-primary"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">정우성 님</h5>
+              <div class="text-warning mb-2">
+                ★★★★☆
+              </div>
+              <p class="card-text text-muted">처음이라 걱정했는데 너무 친절하게 설명해주셔서 신뢰가 갔어요.</p>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="card h-100 shadow-sm">
+            <div class="text-center pt-4">
+              <i class="ri-user-3-line display-4 text-primary"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">한지민 님</h5>
+              <div class="text-warning mb-2">
+                ★★★★☆
+              </div>
+              <p class="card-text text-muted">웹사이트도 깔끔하고 절차가 쉬워서 금방 끝났어요. 초보도 쉽게 이용 가능하네요.</p>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="card h-100 shadow-sm">
+            <div class="text-center pt-4">
+              <i class="ri-user-3-line display-4 text-primary"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">김민준 님</h5>
+              <div class="text-warning mb-2">
+                ★★★★★
+              </div>
+              <p class="card-text text-muted">처음 이용했는데 정말 빠르고 친절했어요. 5분도 안 되어 입금 완료!</p>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="card h-100 shadow-sm">
+            <div class="text-center pt-4">
+              <i class="ri-user-3-line display-4 text-primary"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">박서연 님</h5>
+              <div class="text-warning mb-2">
+                ★★★★★
+              </div>
+              <p class="card-text text-muted">매입률이 높아서 만족했고, 상담도 매우 친절했어요.</p>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="card h-100 shadow-sm">
+            <div class="text-center pt-4">
+              <i class="ri-user-3-line display-4 text-primary"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">이준호 님</h5>
+              <div class="text-warning mb-2">
+                ★★★★☆
+              </div>
+              <p class="card-text text-muted">상품권 여러 장도 한 번에 처리해줘서 편리했어요.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
+      },
+      1024: {
+        slidesPerView: 3,
+      }
+    }
+  });
+</script>
+
+  <!-- 실시간 거래 현황 -->
+  <section class="py-5 bg-white">
+    <div class="container">
+      <h3 class="text-center h2 fw-bold mb-4">💸 실시간 거래 현황 💸</h3>
+      <p class="text-center text-muted mb-4">지금 이 순간에도 수많은 고객님들이 충전티켓을 이용하고 있습니다.</p>
+      <div class="table-responsive">
+        <table class="table table-bordered align-middle">
+          <thead class="table-primary">
+            <tr>
+              <th>접수정보</th>
+              <th>접수일</th>
+              <th>진행상태</th>
+            </tr>
+          </thead>
+          <tbody id="liveTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+
+  
+
+
+  <!-- 나머지 기존 섹션 생략 -->
+
+  <script>
+    const names = ['김**', '이**', '박**', '최**', '정**', '유**', '장**', '조**', '임**', '한**'];
+    const statuses = [
+      { icon: '✅', label: '입금완료', class: 'text-success' },
+      { icon: '🔄', label: '진행중', class: 'text-warning' },
+      { icon: '🕒', label: '대기중', class: 'text-danger' },
+    ];
+
+    function getToday() {
+      const d = new Date();
+      return `${d.getMonth() + 1}월 ${d.getDate()}일`;
+    }
+
+    function getRandomAmount() {
+      return ((Math.floor(Math.random() * 20) + 1) * 10000).toLocaleString() + '원';
+    }
+
+    function addTransactionRow() {
+      const name = names[Math.floor(Math.random() * names.length)];
+      const status = statuses[Math.floor(Math.random() * statuses.length)];
+      const amount = getRandomAmount();
+      const row = document.createElement('tr');
+      row.classList.add('fade-in');
+      row.innerHTML = `
+        <td>${name} ${amount} 상담접수완료</td>
+        <td>${getToday()}</td>
+        <td class="fw-bold ${status.class}">${status.icon} ${status.label}</td>
+      `;
+      const tbody = document.getElementById('liveTableBody');
+      tbody.insertBefore(row, tbody.firstChild);
+      if (tbody.children.length > 10) tbody.removeChild(tbody.lastChild);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      for (let i = 0; i < 5; i++) addTransactionRow();
+      setInterval(addTransactionRow, 2000);
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+<!-- Footer Padding Spacer -->
+<div class="h-40 sm:h-44"></div> <!-- 기존 h-32 → h-40 으로 변경 -->
+
+<footer class="bg-gray-800 text-gray-400 text-sm py-10 text-center mb-24 sm:mb-28">
+  <p>상호 : 충전티켓 | 대표전화 : <span class="footer-phone"></span> | 전화 또는 문자 문의 부탁드립니다.</p>
+  <p class="mt-2">Copyright &copy; 2025 충전티켓. All rights reserved.</p>
+</footer>
+
+
+
+<!-- 하단 고정 버튼 -->
+<div class="fixed bottom-0 left-0 w-full flex z-50 text-sm sm:text-base">
+    <!-- 카카오톡 버튼 -->
+    <button
+      onclick="location.href='sms:' + TEL_NUMBER"
+      class="w-1/2 bg-yellow-400 text-black py-4 sm:py-5 font-bold hover:bg-yellow-500 transition flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-center"
+    >
+      <i class="ri-kakao-talk-fill ri-lg sm:ri-xl"></i>
+      <span>문자 상담 : <span class="footer-phone">-</span></span>
+    </button>
+  
+    <!-- 전화 연결 버튼 -->
+    <button
+      onclick="location.href='tel:' + TEL_NUMBER"
+      class="w-1/2 bg-blue-600 text-white py-4 sm:py-5 font-bold hover:bg-blue-700 transition flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-center"
+    >
+      <i class="ri-phone-fill ri-lg sm:ri-xl"></i>
+      <span>전화 연결 : <span class="footer-phone">-</span></span>
+    </button>
+</div>
+
+
+  <!-- 🔽 반드시 이 위치에 있어야 함 -->
+  <script>
+const TEL_NUMBER = "01081872749";
+const KAKAO_ID = "N1348";
+const KAKAO_URL = "http://qr.kakao.com/talk/MBsKvshDmtamG2EuQNKdmPuGFJQ-";
+
+window.addEventListener("DOMContentLoaded", function () {
+  const formattedTel = TEL_NUMBER.replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3");
+
+  const classMap = {
+    "footer-phone": formattedTel,
+    "footer-phone-copy": TEL_NUMBER,
+    "footer-kakao": KAKAO_ID,
+    "footer-kakao-button": KAKAO_ID
+  };
+
+  for (const className in classMap) {
+    const elements = document.getElementsByClassName(className);
+    for (let i = 0; i < elements.length; i++) {
+      elements[i].innerText = classMap[className];
+    }
+  }
+});
+  </script>
+
+</body>
+
+
+
+</html>
+
+
+
